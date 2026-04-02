@@ -127,7 +127,10 @@ def upsert_history(collection: Collection, records: list[dict[str, Any]]) -> int
 
 def run(limit: int | None, full_sync: bool) -> int:
     token = os.getenv("METACULUS_TOKEN", "")
-    headers = {"Authorization": f"Bearer {token}"} if token else {}
+    if not token:
+        print({"status": "success", "questions_fetched": 0, "forecasts_fetched": 0, "reason": "METACULUS_TOKEN not set"})
+        return 0
+    headers = {"Authorization": f"Bearer {token}"}
 
     db = get_db()
     run_id = str(uuid.uuid4())
