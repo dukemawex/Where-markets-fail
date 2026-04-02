@@ -1,8 +1,23 @@
-name: where-markets-fail
+name: wheremarketsfail-api
+region: nyc
 services:
   - name: api
-    github:
-      repo: dukemawex/Where-markets-fail
-      branch: main
-    source_dir: /api
-    run_command: npm run start
+    source_dir: api
+    dockerfile_path: api/Dockerfile
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    routes:
+      - path: /
+    envs:
+      - key: MONGODB_URI
+        scope: RUN_TIME
+        type: SECRET
+      - key: METACULUS_TOKEN
+        scope: RUN_TIME
+        type: SECRET
+      - key: OPENROUTER_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: NODE_ENV
+        value: production
