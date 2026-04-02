@@ -1,0 +1,8 @@
+name: where-markets-fail
+services:
+  - name: api
+    github:
+      repo: dukemawex/Where-markets-fail
+      branch: main
+    source_dir: /api
+    run_command: npm run start
