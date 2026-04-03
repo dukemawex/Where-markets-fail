@@ -1,0 +1,23 @@
+name: wheremarketsfail-api
+region: nyc
+services:
+  - name: api
+    source_dir: api
+    dockerfile_path: api/Dockerfile
+    http_port: 8080
+    instance_count: 1
+    instance_size_slug: basic-xxs
+    routes:
+      - path: /
+    envs:
+      - key: MONGODB_URI
+        scope: RUN_TIME
+        type: SECRET
+      - key: METACULUS_TOKEN
+        scope: RUN_TIME
+        type: SECRET
+      - key: OPENROUTER_API_KEY
+        scope: RUN_TIME
+        type: SECRET
+      - key: NODE_ENV
+        value: production

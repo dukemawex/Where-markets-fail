@@ -1,0 +1,4 @@
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body { font-family: Inter, Arial, sans-serif; background: #020617; color: #e2e8f0; }
+a { color: inherit; text-decoration: none; }
